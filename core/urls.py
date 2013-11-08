@@ -108,5 +108,8 @@ urlpatterns += patterns('',
     (r'', include('lfs_contact.urls')),
 )
 
+urlpatterns += patterns('',
+    (r'^info/', include('django.contrib.flatpages.urls')),
+)
 
 one_time_setup()
