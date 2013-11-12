@@ -386,8 +386,6 @@ def category_products(request, slug, start=1, template_name="lfs/catalog/categor
         if parents:
             category.filter_categories = [parents[0]]
             category.filter_categories.extend(parents[0].get_children())
-    for cat in category.filter_categories:
-        print cat.slug
     # Calculates parameters for display.
     try:
         start = int(start)

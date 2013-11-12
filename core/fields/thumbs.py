@@ -32,15 +32,11 @@ def generate_thumb(img, thumb_size, format):
                 (this format will be used for the generated thumbnail, too)
     """
     img.seek(0)
-    print 77, img
     image = Image.open(img)
-    print 78787876
     # Convert to RGB if necessary
     if image.mode not in ('L', 'RGB', 'RGBA'):
         image = image.convert('RGB')
-    print 88888
     new_image = scale_to_max_size(image, *thumb_size)
-    print 44444
     io = cStringIO.StringIO()
 
     # PNG and GIF are the same, JPG is JPEG
