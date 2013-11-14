@@ -181,7 +181,7 @@ def send_order_sent_mail_to_admins(order):
         subject=subject, body=text, from_email=from_email, to=to, bcc=bcc)
 
     # html
-    html = render_to_string("lfs/mail/order_sent_mail.html", {
+    html = render_to_string("lfs/mail/order_sent_mail_for_admin.html", {
         "order": order
     })
 
