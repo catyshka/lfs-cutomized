@@ -159,7 +159,9 @@ def send_review_added(review):
 
     mail.attach_alternative(html, "text/html")
     mail.send(fail_silently=True)
-    
+
+
+#does not used by now
 def send_order_sent_mail_to_admins(order):
     """Sends a mail to shop admins that a new order has been created
     """

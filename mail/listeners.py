@@ -23,7 +23,6 @@ def order_sent_listener(sender, **kwargs):
     """
     order = sender.get("order")
     mail_utils.send_order_sent_mail(order)
-    mail_utils.send_order_sent_mail_to_admins(order)
 order_sent.connect(order_sent_listener)
 
 
