@@ -237,8 +237,6 @@ def one_page_checkout(request, checkout_form=OnePageCheckoutForm,
             form_class = form_factory(country_iso)
             shipping_form = form_class(request.POST, prefix=prefix)
             valid_shipping_form = shipping_form.is_valid()
-        print form.is_valid(), invoice_form.is_valid(), valid_shipping_form, toc
-        print invoice_form
         if form.is_valid() and invoice_form.is_valid() and valid_shipping_form and toc:
             # save invoice details
             customer.selected_invoice_address.firstname = request.POST.get("invoice_firstname")

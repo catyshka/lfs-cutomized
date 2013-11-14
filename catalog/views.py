@@ -502,11 +502,15 @@ def product_inline(request, product, template_name="lfs/catalog/products/product
         return result
     product.current_category = product.get_current_category(request)
     same_category_products = product.current_category.products.all()
+    
+    #limit products to 300 only
+    same_category_products = same_category_products[:300]
     for prod in same_category_products:
         product_image = prod.get_image()
         if product_image:
             prod.image = product_image.image
-    product.current_category.same_category_products = same_category_products
+        
+    product.same_category_products = same_category_products
     # Switching to default variant
     if product.is_product_with_variants():
         temp = product.get_default_variant()

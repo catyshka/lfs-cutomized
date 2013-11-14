@@ -159,3 +159,32 @@ def send_review_added(review):
 
     mail.attach_alternative(html, "text/html")
     mail.send(fail_silently=True)
+    
+def send_order_sent_mail_to_admins(order):
+    """Sends a mail to shop admins that a new order has been created
+    """
+    import lfs.core.utils
+    shop = lfs.core.utils.get_default_shop()
+
+    try:
+        subject = render_to_string("lfs/mail/order_sent_subject.txt", {"order": order})
+    except TemplateDoesNotExist:
+        subject = _(u"Your order has been sent")
+
+    from_email = shop.from_email
+    to = shop.get_notification_emails()
+    bcc = shop.get_notification_emails()
+
+    # text
+    text = render_to_string("lfs/mail/order_sent_mail.txt", {"order": order})
+    mail = EmailMultiAlternatives(
+        subject=subject, body=text, from_email=from_email, to=to, bcc=bcc)
+
+    # html
+    html = render_to_string("lfs/mail/order_sent_mail.html", {
+        "order": order
+    })
+
+    mail.attach_alternative(html, "text/html")
+    mail.send(fail_silently=False)
+
