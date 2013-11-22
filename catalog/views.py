@@ -504,7 +504,7 @@ def product_inline(request, product, template_name="lfs/catalog/products/product
     same_category_products = product.current_category.products.all()
     
     #limit products to 300 only
-    same_category_products = same_category_products[:50]
+    same_category_products = []#same_category_products[:50]
     for prod in same_category_products:
         product_image = prod.get_image()
         if product_image:
