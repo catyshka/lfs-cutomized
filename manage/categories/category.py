@@ -48,7 +48,7 @@ class CategoryForm(ModelForm):
 
     class Meta:
         model = Category
-        fields = ("name", "slug", "short_description", "description", "short_description",
+        fields = ("name", "title", "slug", "short_description", "description", "short_description",
         "exclude_from_navigation", "image", "static_block")
 
 

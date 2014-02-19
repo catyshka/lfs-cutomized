@@ -154,6 +154,7 @@ class Category(models.Model):
        Sets the template which renders the category view. If left to None, default template is used.
     """
     name = models.CharField(_(u"Name"), max_length=50)
+    title = models.CharField(_(u"Subheader Title"), max_length=250, blank=True)
     slug = models.SlugField(_(u"Slug"), unique=True)
     parent = models.ForeignKey("self", verbose_name=_(u"Parent"), blank=True, null=True)
 

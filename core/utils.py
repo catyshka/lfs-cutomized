@@ -265,19 +265,26 @@ class CategoryTree(object):
 
             if (self.currents and category in self.currents):
                 children = self._get_sub_tree(category, level + 1)
+                products = category.products.filter(active=True)[0:10]
                 is_current = True
             elif category.level <= self.expand_level:
                 children = self._get_sub_tree(category, level + 1)
+                products = category.products.filter(active=True)[0:10]
                 is_current = False
             else:
                 children = []
+                products = []
                 is_current = False
-
+            for prod in products:
+                product_image = prod.get_image()
+                if product_image:
+                    prod.image = product_image.image
             if self.start_level > 1:
                 if category.parent in self.currents:
                     categories.append({
                         "category": category,
                         "children": children,
+                        "products": products,
                         "level": level,
                         "is_current": is_current,
                     })
@@ -285,6 +292,7 @@ class CategoryTree(object):
                 categories.append({
                     "category": category,
                     "children": children,
+                    "products": products,
                     "level": level,
                     "is_current": is_current,
                 })
