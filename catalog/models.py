@@ -739,7 +739,7 @@ class Product(models.Model):
         pas = []
         for pa in ProductAccessories.objects.filter(product=product):
             if pa.accessory.is_active():
-                product_image = pa.product.get_image()
+                product_image = pa.accessory.get_image()
                 if product_image:
                     pa.image = product_image.image
                     pas.append(pa)
