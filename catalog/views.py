@@ -592,7 +592,6 @@ def product_inline(request, product, template_name="lfs/catalog/products/product
 
     # attachments
     attachments = product.get_attachments()
-
     result = render_to_string(template_name, RequestContext(request, {
         "product": product,
         "variants": variants,

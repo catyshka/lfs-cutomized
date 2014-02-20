@@ -736,11 +736,13 @@ class Product(models.Model):
             product = self.parent
         else:
             product = self
-
         pas = []
         for pa in ProductAccessories.objects.filter(product=product):
             if pa.accessory.is_active():
-                pas.append(pa)
+                product_image = pa.product.get_image()
+                if product_image:
+                    pa.image = product_image.image
+                    pas.append(pa)
 
         return pas
 
