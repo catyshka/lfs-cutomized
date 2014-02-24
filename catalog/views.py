@@ -399,6 +399,11 @@ def category_products(request, slug, start=1, template_name="lfs/catalog/categor
     
     manufacturer = None
     manufacturerId = request.GET.get('manufacturer', None)
+    if not sorting:
+        sorting = "categories__id"
+    else:
+        sorting = sorting + ", categories__id"
+
     all_products = lfs.catalog.utils.get_filtered_products_for_category(
         category, product_filter, price_filter, sorting)
     if manufacturerId:
